@@ -1,0 +1,257 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+@font-face {
+    font-family: nino;
+    src: url(../fonts/bpg_nino_medium.otf);
+}
+
+@font-face {
+    font-family: ninoCaps;
+    src: url(../fonts/bpg_nino_mtavruli_normal.ttf);
+}
+
+
+body, html{
+    width: 100%;
+    padding: 0;
+    height: 100%;
+    margin: 0;
+    color: #212529;
+    background-color: #f8fafc;
+}
+
+.container{
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.user_matches {
+    width: 90%;
+    max-width: 1200px;
+}
+
+.oponent-container {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+
+s {}
+
+.games {
+    width: calc(100% - 190px);
+    display: inline-block;
+}
+
+.name {
+    width: 90px;
+    display: inline-block;
+}
+
+.name {}
+
+.results {
+    display: inline-block;
+    width: 90px;
+}
+
+.matches-widget{position: absolute;width: calc(100% - 30em);top: 0;right: 0;padding: 2em;display: block;box-sizing: border-box}
+.match{display: inline-block;position: relative;width: 2em;padding-top: .3em;box-sizing: border-box;height: 2em;text-align: center;color: white;margin: .4em;cursor: pointer;}
+.match.win{background: green;}
+.match.lost{background: #d21e1e;}
+.match.draw{background: #dace2a;}
+.match span{display:none}
+.match.lost span:nth-child(3){display:initial}
+.match.win span:nth-child(1){display:initial}
+.match.draw span:nth-child(2){display:initial}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    display: initial;
+    visibility: hidden;
+    width: 260px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -2.7em;
+    right: 0;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.last-matches {
+    text-align: center;
+}
+
+.last-match {
+    height: 2.5em;
+}
+
+.last-match a {
+    text-decoration: none;
+    color: #212529;
+}
+
+.last-matches span.score {background: #f2f4f5; padding: .4em}
+
+form {
+    text-align: center;
+}
+
+form>div {
+    display: inline-block;
+}
+
+form select {
+    display: block;
+    margin-bottom: 1em;
+    width: 100%;
+    padding: .5em 1em;
+}
+
+form input {
+    display: block;
+    margin-bottom: 1em;
+    width: 100%;
+    padding: .5em 1em;
+}
+
+form input[type=submit]{
+    width:130px;
+    background: #6dce5e;
+    border: none;
+    color: white;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+
+.vinvis{
+    background: #212529;
+    padding: .4em 1em;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+span.change {
+    background: #6dce5e;
+    color: white;
+    padding: .4em;
+    margin: .2em;
+}
+
+span.change- {
+    background: #d82727;
+    color: white;
+    padding: .4em;
+    margin: .2em;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+a{text-decoration:none !important}
+
+tr:nth-child(2) {
+    background: green;
+    color: white;
+}
+tr:nth-child(2) *{
+    color: white;
+    text-decoration: none;
+}
+
+tr:nth-child(3) {
+    background: green;
+    color: white;
+    opacity: .8;
+}
+tr:nth-child(3) *{
+
+    color: white;
+    text-decoration: none;
+}
+
+
+tr:nth-child(4) {
+    background: green;
+    color: white;
+    opacity: .6;
+}
+tr:nth-child(4) *{
+
+    color: white;
+    text-decoration: none;
+}
+
+
+tr:nth-child(5) {
+    background: green;
+    color: white;
+    opacity: .45
+}
+tr:nth-child(5) *{
+
+    color: white;
+    text-decoration: none;
+}
+
+tr:nth-last-child(1) {
+    background: #bb0f0f;
+    color: white;
+}
+tr:nth-last-child(1) *{
+
+    color: white;
+    text-decoration: none;
+}
+
+tr:nth-last-child(2) {
+    background: #bb0f0fb8;
+    color: white;
+
+}
+tr:nth-last-child(2) *{
+
+    color: white;
+    text-decoration: none;
+}
+
+tr:nth-last-child(3) {
+    background: #bb0f0f80;
+    color: white;
+
+}
+tr:nth-last-child(3) *{
+
+    color: white;
+    text-decoration: none;
+}
