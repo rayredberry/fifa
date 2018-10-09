@@ -34,7 +34,7 @@
             <input type="number" name="second_user_goal" placeholder="მეორეს გოლი">
         </div>
 
-        <input type="submit" value="ტენე">
+        <input type="submit" value="დამატება">
     </form>
 
     <div class="last-matches">
@@ -57,7 +57,7 @@
 
 
             if($match->first_user_goal == $match->second_user_goal){
-                if($match->first_user_score <  $match->second_user_score){
+                if($match->first_user_score >  $match->second_user_score){
                     $firstUserChange = "-";
                     $secondUserChange = "+";
                 } else {
