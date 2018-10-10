@@ -22,6 +22,9 @@
                 <th>გოლი -</th>
                 <th>საშუალო ქულა</th>
                 <th>რეიტინგი</th>
+                <th>Max რეიტინგი</th>
+                <th>Min რეიტინგი</th>
+                <th>დახარჯული დრო</th>
 
             </tr>
             <?php $count=1; ?>
@@ -38,6 +41,10 @@
                 <td>{{$user->goals_conceded}}</td>
                 <td><?php if($user->games_played != 0){ echo round($user->points / $user->games_played,2);} else{  echo 0;}?></td>
                 <td>{{$user->score}}</td>
+                <td>{{$user->max_score}}</td>
+                <td>{{$user->min_score}}</td>
+                <td>{{floor($user->games_played*13/60)}}სთ {{$user->games_played*13%60}}წთ</td>
+
 
             </tr>
                 <?php $count++; ?>

@@ -255,3 +255,12 @@ tr:nth-last-child(3) *{
     color: white;
     text-decoration: none;
 }
+
+td, th {
+    padding: .4em 1em;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}

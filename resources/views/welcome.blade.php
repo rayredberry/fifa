@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'ვის ტყნავს იუზერი')
+@section('title', 'ვინ ვის ტყნავს ')
 
 
 @section('content')
