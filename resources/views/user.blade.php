@@ -97,7 +97,8 @@
                 $lose =0;
                 $draw =0;
 
-
+                $user_goal_sum = 0;
+                $oponent_goal_sum = 0;
 
 
                 if($user->id == $matches[0]->first_user_id){
@@ -120,25 +121,21 @@
 
                         <?php
 
-
-
-
                         if($user->id == $match->first_user_id){
-                        $userScore = $match->first_user_goal;
-                        $oponentScore= $match->second_user_goal;
-                        $oponentId = $match->second_user_id;
-                        $oponent = $match->second_user;
-
+                            $userScore = $match->first_user_goal;
+                            $oponentScore= $match->second_user_goal;
+                            $oponentId = $match->second_user_id;
+                            $oponent = $match->second_user;
                         } else {
-                        $oponent = $match->first_user;
-                        $userScore = $match->second_user_goal;
-                        $oponentScore= $match->first_user_goal;
-                        $oponentId = $match->first_user_id;
+                            $oponent = $match->first_user;
+                            $userScore = $match->second_user_goal;
+                            $oponentScore= $match->first_user_goal;
+                            $oponentId = $match->first_user_id;
                         }
 
 
-
                         $difference = $match->difference;
+
 
                         if($userScore == $oponentScore){
                             $class = 'draw';
@@ -150,6 +147,9 @@
                             $class = 'win';
                             $win++;
                         }
+
+                        $user_goal_sum += $userScore;
+                        $oponent_goal_sum += $oponentScore;
 
                         ?>
 
@@ -164,7 +164,7 @@
                 </div>
 
                 <div class="results">
-                    <span>{{$win}}-{{$draw}}-{{$lose}}</span>
+                    <span>{{$win}}-{{$draw}}-{{$lose}} <br> {{$user_goal_sum}} : {{$oponent_goal_sum}}</span>
                 </div>
 
             </div>
