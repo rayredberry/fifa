@@ -48,6 +48,8 @@ class HomeController extends Controller
                     'draw' => 0,
                     'points' => 0,
                     'score' => 40,
+                    'min_score' =>40,
+                    'max_score' => 0,
                     'remember_token' => '',
 
                 ]);

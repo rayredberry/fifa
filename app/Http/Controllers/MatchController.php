@@ -163,6 +163,19 @@ class MatchController extends Controller
             }
 
         }
+
+        if($secondUser->score > $secondUser->max_score){
+            $secondUser->max_score = $secondUser->score;
+        } else if($secondUser->score < $secondUser->min_score){
+            $secondUser->min_score = $secondUser->score;
+        }
+
+        if($firstUser->score > $firstUser->max_score){
+            $firstUser->max_score = $firstUser->score;
+        } else if($firstUser->score < $firstUser->min_score){
+            $firstUser->min_score = $firstUser->score;
+        }
+
         echo $firstUser->score . ' ' . $firstUser->name  . ' - ' .$secondUser->name . ' ' . $secondUser->score  . '<br> <br>';
 
         Match::create([

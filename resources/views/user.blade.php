@@ -22,6 +22,9 @@
        <p>ქულები : <span style="font-weight:bold">{{$user->points}}</span></p>
        <p>საშუალო ქულა : <span style="font-weight:bold">{{round($user->points/$user->games_played,2)}}</span></p>
        <p>რეიტინგი : <span style="font-weight:bold">{{round($user->score,2)}}</span></p>
+        <p>Max რეიტინგი : <span style="font-weight:bold">{{round($user->max_score,2)}}</span></p>
+        <p>Min რეიტინგი : <span style="font-weight:bold">{{round($user->min_score,2)}}</span></p>
+
 
     </div>
 

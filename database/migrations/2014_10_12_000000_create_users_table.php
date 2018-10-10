@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->integer('draw');
             $table->integer('points');
             $table->float('score');
+            $table->float('max_score');
+            $table->float('min_score');
             $table->rememberToken();
             $table->timestamps();
         });
