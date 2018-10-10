@@ -20,10 +20,10 @@
                 <th>წაგება</th>
                 <th>გოლი +</th>
                 <th>გოლი -</th>
+                <th>გოლის სხვაობა</th>
                 <th>საშუალო ქულა</th>
                 <th>რეიტინგი</th>
                 <th>Max რეიტინგი</th>
-                <th>Min რეიტინგი</th>
                 <th>დახარჯული დრო</th>
 
             </tr>
@@ -39,10 +39,10 @@
                 <td>{{$user->lost}}</td>
                 <td>{{$user->goals_scored}}</td>
                 <td>{{$user->goals_conceded}}</td>
+                <td>{{$user->goals_scored - $user->goals_conceded}}</td>
                 <td><?php if($user->games_played != 0){ echo round($user->points / $user->games_played,2);} else{  echo 0;}?></td>
                 <td>{{$user->score}}</td>
                 <td>{{$user->max_score}}</td>
-                <td>{{$user->min_score}}</td>
                 <td>{{floor($user->games_played*13/60)}}სთ {{$user->games_played*13%60}}წთ</td>
 
 
