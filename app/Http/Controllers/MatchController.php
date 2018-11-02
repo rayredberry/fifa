@@ -94,7 +94,7 @@ class MatchController extends Controller
         $secondUser->goals_conceded += $firstUserGoal;
 
 
-        echo $firstUser->score . ' ' . $firstUser->name .' ' . $firstUserGoal . ' - ' .$secondUserGoal . ' ' . $secondUser->name .' ' . $secondUser->score  . '<br>';
+//        echo $firstUser->score . ' ' . $firstUser->name .' ' . $firstUserGoal . ' - ' .$secondUserGoal . ' ' . $secondUser->name .' ' . $secondUser->score  . '<br>';
 
         if($firstUserGoal > $secondUserGoal){
             $firstUser->win += 1;
@@ -176,7 +176,7 @@ class MatchController extends Controller
             $firstUser->min_score = $firstUser->score;
         }
 
-        echo $firstUser->score . ' ' . $firstUser->name  . ' - ' .$secondUser->name . ' ' . $secondUser->score  . '<br> <br>';
+//        echo $firstUser->score . ' ' . $firstUser->name  . ' - ' .$secondUser->name . ' ' . $secondUser->score  . '<br> <br>';
 
         Match::create([
             'first_user_id' => $firstUser->id,
@@ -212,6 +212,7 @@ class MatchController extends Controller
 
 
     public function delete($id){
+
         $matches = Match::where('id', '!=' , $id)->get();
         $oldmatches = $matches;
         DB::table('users')->where('id', '>', 0)->update(array(
@@ -234,7 +235,7 @@ class MatchController extends Controller
             $this->insertMatch($firstUser, $secondUser, $match->first_user_goal, $match->second_user_goal);
         }
 
-        exit();
+        return redirect('');
 
     }
 

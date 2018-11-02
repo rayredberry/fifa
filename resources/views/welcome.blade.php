@@ -8,7 +8,14 @@
 
 
 
+
+
     <a href="{{url('/list')}}" class="vinvis">.tk/navs</a>
+
+
+    <!-- <add-match></add-match> -->
+
+
     <form method="post" action="{{ action('MatchController@addMatch') }}">
         {{ csrf_field() }}
 
@@ -77,6 +84,7 @@
             <span class="score">{{$match->first_user_goal}} - {{$match->second_user_goal}}</span>
 
             <a href="{{url("/user/{$match->second_user->id}")}}" class="player ">{{$match->second_user->name}} <span class="change<?php if($secondUserChange == '-') echo '-' ?>">{{$match->second_user_score}} {{$secondUserChange}} {{$difference}} </span></a>
+            <a href="{{url("/deleteMatch/{$match->id}")}}" >წაშლა</a>
             </div>
 
 
