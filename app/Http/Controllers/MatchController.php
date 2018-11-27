@@ -44,21 +44,23 @@ class MatchController extends Controller
     public function store(Request $request)
     {
         //
-        $handle = fopen('http://localhost/fifa/public/fifa.csv', 'r');
+        $handle = fopen('http://localhost/fifa/public/matchesa.csv', 'r');
         $header = 0;
 
         while ($csvLine = fgetcsv($handle, 1000, ",")) {
 
-            if ($header < 2) {
+            if ($header < 2 && false) {
                 $header += 1;
             } else {
                 if($csvLine[0] == '')break;
-                $firstUser = User::where('name', $csvLine[0])->first();
-                $secondUser = User::where('name', $csvLine[1])->first();
-                $firstUserGoal = $csvLine[2];
-                $secondUserGoal = $csvLine[3];
-
+                $firstUser = User::find($csvLine[1]);
+                $secondUser = User::find($csvLine[2]);
+                $firstUserGoal = $csvLine[3];
+                $secondUserGoal = $csvLine[4];
                 $this->insertMatch($firstUser, $secondUser, $firstUserGoal, $secondUserGoal);
+
+//                $this->insertFifaMatch($firstUser, $secondUser, $firstUserGoal, $secondUserGoal);
+
             }
         }
         exit();
@@ -67,6 +69,110 @@ class MatchController extends Controller
 
 
     public function updateHeisienberg(){
+
+    }
+
+
+
+
+
+    public function insertFifaMatch($firstUser, $secondUser, $firstUserGoal, $secondUserGoal){
+
+        $oldscore1 = $firstUser->score;
+        $oldscore2 = $secondUser->score;
+
+
+
+
+
+        $difference =  $secondUser->score - $firstUser->score ;
+
+
+
+
+        $firstUser->games_played += 1;
+        $firstUser->goals_scored += $firstUserGoal;
+        $firstUser->goals_conceded += $secondUserGoal;
+
+        $secondUser->games_played += 1;
+        $secondUser->goals_scored += $secondUserGoal;
+        $secondUser->goals_conceded += $firstUserGoal;
+
+
+//        echo $firstUser->score . ' ' . $firstUser->name .' ' . $firstUserGoal . ' - ' .$secondUserGoal . ' ' . $secondUser->name .' ' . $secondUser->score  . '<br>';
+
+        if($firstUserGoal > $secondUserGoal){
+            $firstUser->win += 1;
+            $secondUser->lost += 1;
+            $firstUser->points += 3;
+            $scale = 1;
+
+            if($firstUserGoal - $secondUserGoal > 2){
+                $scale = 1.5;
+            }
+
+
+
+            $firstUser->score += 10*(1-(1/(pow(10,(($secondUser->score - $firstUser->score)/600))+1)))*$scale;
+            $secondUser->score += 10*(0-(1/(pow(10,(($firstUser->score - $secondUser->score)/600))+1)))*$scale;
+
+
+        } elseif ($firstUserGoal == $secondUserGoal){
+            $firstUser->draw += 1;
+            $secondUser->draw += 1;
+            $firstUser->points +=1;
+            $secondUser->points +=1;
+
+
+
+
+            $firstUser->score += 10*(0.5-(1/(pow(10,(($secondUser->score - $firstUser->score)/600))+1)));
+            $secondUser->score += 10*(0.5-(1/(pow(10,(($firstUser->score - $secondUser->score)/600))+1)));
+
+
+        } else{
+            $firstUser->lost += 1;
+            $secondUser->win += 1;
+            $secondUser->points += 3;
+
+
+            $scale = 1;
+            if($secondUserGoal - $firstUserGoal > 2){
+                $scale = 1.5;
+            }
+
+            $firstUser->score += 10*(0-(1/(pow(10,(($secondUser->score - $firstUser->score)/600))+1)))*$scale;
+            $secondUser->score += 10*(1-(1/(pow(10,(($firstUser->score - $secondUser->score)/600))+1)))*$scale;
+
+
+        }
+
+        if($secondUser->score > $secondUser->max_score){
+            $secondUser->max_score = $secondUser->score;
+        } else if($secondUser->score < $secondUser->min_score){
+            $secondUser->min_score = $secondUser->score;
+        }
+
+        if($firstUser->score > $firstUser->max_score){
+            $firstUser->max_score = $firstUser->score;
+        } else if($firstUser->score < $firstUser->min_score){
+            $firstUser->min_score = $firstUser->score;
+        }
+
+//        echo $firstUser->score . ' ' . $firstUser->name  . ' - ' .$secondUser->name . ' ' . $secondUser->score  . '<br> <br>';
+
+        Match::create([
+            'first_user_id' => $firstUser->id,
+            'second_user_id' => $secondUser->id,
+            'first_user_goal' => $firstUserGoal,
+            'second_user_goal' => $secondUserGoal,
+            'first_user_score' => $oldscore1,
+            'second_user_score' => $oldscore2,
+            'difference' => abs($firstUser->score - $oldscore1)
+        ]);
+
+        $firstUser->save();
+        $secondUser->save();
 
     }
 
@@ -203,6 +309,7 @@ class MatchController extends Controller
         $secondUserGoal = $request->input('second_user_goal');
 
         $this->insertMatch($firstUser, $secondUser, $firstUserGoal, $secondUserGoal);
+//        $this->insertFifaMatch($firstUser, $secondUser, $firstUserGoal, $secondUserGoal);
 
 
         $users = User::orderBy('score', 'desc')->get();

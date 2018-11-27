@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',  'password', 'games_played', 'goals_scored', 'goals_conceded', 'win', 'lost', 'draw', 'points','score', 'max_score' ,'min_score'
+        'name',  'password', 'games_played', 'goals_scored', 'goals_conceded', 'win', 'lost', 'draw', 'points','score', 'max_score' ,'min_score', 'streak'
     ];
 
     /**

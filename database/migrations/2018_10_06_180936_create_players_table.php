@@ -29,6 +29,7 @@ class CreatePlayersTable extends Migration
             $table->float('score');
             $table->float('max_score');
             $table->float('min_score');
+            $table->integer('streak');
             $table->rememberToken();
             $table->timestamps();
         });
