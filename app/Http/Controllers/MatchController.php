@@ -44,10 +44,11 @@ class MatchController extends Controller
     public function store(Request $request)
     {
         //
-        $handle = fopen('http://localhost/public/matchesa.csv', 'r');
+        $handle = fopen('http://vinvis.tk/matchesa.csv', 'r');
         $header = 0;
 
         while ($csvLine = fgetcsv($handle, 1000, ",")) {
+
 
             if ($header < 2 && false) {
                 $header += 1;
