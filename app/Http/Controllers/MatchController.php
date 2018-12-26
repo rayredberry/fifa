@@ -46,7 +46,7 @@ class MatchController extends Controller
         //
         $handle = fopen('http://localhost/public/matchesa.csv', 'r');
         $header = 0;
-
+        $count = 1;
         while ($csvLine = fgetcsv($handle, 1000, ",")) {
 
             if ($header < 2 && false) {
@@ -57,8 +57,16 @@ class MatchController extends Controller
                 $secondUser = User::find($csvLine[2]);
                 $firstUserGoal = $csvLine[3];
                 $secondUserGoal = $csvLine[4];
+                if($count == 723){
+                  User::find($csvLine[10])->score += 10;
+                  User::find($csvLine[6])->score += 5;
+                  User::find($csvLine[2])->score += 3;
+                  User::find($csvLine[10])->save();
+                  User::find($csvLine[6])->save();
+                  User::find($csvLine[2])->save();
+                }
                 $this->insertMatch($firstUser, $secondUser, $firstUserGoal, $secondUserGoal);
-
+                $count++;
 //                $this->insertFifaMatch($firstUser, $secondUser, $firstUserGoal, $secondUserGoal);
 
             }
@@ -334,12 +342,22 @@ class MatchController extends Controller
 
 
         Match::where('id', '>', 0)->delete();
+        $count = 1;
         foreach($oldmatches as $match){
 
             $firstUser = User::find($match->first_user_id);
             $secondUser =User::find($match->second_user_id);
+            if($count == 723){
+              User::find($csvLine[10])->score += 10;
+              User::find($csvLine[6])->score += 5;
+              User::find($csvLine[2])->score += 3;
+              User::find($csvLine[10])->save();
+              User::find($csvLine[6])->save();
+              User::find($csvLine[2])->save();
+            }
 
             $this->insertMatch($firstUser, $secondUser, $match->first_user_goal, $match->second_user_goal);
+            $count++;
         }
 
         return redirect('');
