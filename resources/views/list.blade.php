@@ -53,7 +53,8 @@
             @endforeach
         </table>
     </div>
-
+    
+    <div style="margin-top: 2em">2019 ჩემპი I-ბასა, II-ბახსო, III-აკაკი </div>
     <div style="margin-top: 2em">2019 ჩემპი I-რამაზა, II-კეცხო, III-ბახსო </div>
     <div >2018 ჩემპი I-რამაზა, II-კეცხო, III-ბახსო/კვეტენა </div>
 
